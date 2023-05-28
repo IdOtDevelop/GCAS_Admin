@@ -202,6 +202,9 @@ const FormContainer = styled.div`
       outline: none;
     }
   }
+  input::placeholder {
+    color: white !important;
+  }
   button {
     color: white;
     padding: 1rem 2rem;
