@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/GCAS_Admin/static/css/main.a6d6d509.css",
+    "main.js": "/GCAS_Admin/static/js/main.eba77906.js",
+    "index.html": "/GCAS_Admin/index.html",
+    "main.a6d6d509.css.map": "/GCAS_Admin/static/css/main.a6d6d509.css.map",
+    "main.eba77906.js.map": "/GCAS_Admin/static/js/main.eba77906.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a6d6d509.css",
+    "static/js/main.eba77906.js"
+  ]
+}
