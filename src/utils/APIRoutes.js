@@ -1,5 +1,5 @@
-// export const host = "https://gcas.onrender.com";
-export const host = "http://localhost:8089";
+export const host = "https://gcas.onrender.com";
+// export const host = "http://localhost:8089";
 export const loginRoute = `${host}/login`;
 export const signupRoute = `${host}/signup`;
 
