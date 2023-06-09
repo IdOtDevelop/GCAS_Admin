@@ -7,7 +7,7 @@ import { singleblogRoute } from "../utils/APIRoutes";
 import { FaWindowClose } from "react-icons/fa"
 
 function AddBlogs({ showBlog, item, editState }) {
-  console.log(item)
+  // console.log(item)
   const [values, setValues] = useState({});
   const [sub_content, setSubContent] = useState([{ title: "", content: "" }]);
 
@@ -38,10 +38,14 @@ function AddBlogs({ showBlog, item, editState }) {
     return true;
   };
 
-  const handleSubContent = (event, index) => {
+  const handleSubContent = (event, index, ind) => {
     const { name, value } = event.target;
     const subcontlist = sub_content;
-    subcontlist[index][name] = value;
+    if (Array.isArray(subcontlist[index][name]))
+      subcontlist[index][name][ind] = value
+    else
+      subcontlist[index][name] = value;
+    console.log(subcontlist[index])
     setSubContent(subcontlist)
   }
 
@@ -140,17 +144,42 @@ function AddBlogs({ showBlog, item, editState }) {
                   defaultValue={a.title}
                   onChange={(e) => handleSubContent(e, i)}
                 />
-                <input
-                  type="text"
-                  placeholder="About Content"
-                  name="content"
-                  defaultValue={a.content}
-                  onChange={(e) => handleSubContent(e, i)}
-                />
+                {
+                  Array.isArray(sub_content[i].content) ?
+                    <div className="flex flex-col gap-4">
+                      {
+                        sub_content[i].content.map((l, ind) =>
+                          <input
+                            type="text"
+                            placeholder="About List"
+                            name="content"
+                            onChange={(e) => handleSubContent(e, i, ind)}
+                          />
+                        )
+                      }
+                      <input type="button" value="Add list item" onClick={e => {
+                        const subcontlist = sub_content;
+                        subcontlist[i].content = [...subcontlist[i].content, ""];
+                        setSubContent([...subcontlist])
+                      }} />
+                    </div>
+                    :
+                    <input
+                      type="text"
+                      placeholder="About Content"
+                      name="content"
+                      defaultValue={a.content}
+                      onChange={(e) => handleSubContent(e, i)}
+                    />
+                }
+
               </div>
             ))
           }
-          <input type="button" value="about +" onClick={e => setSubContent([...sub_content, { title: "", content: "" }])} />
+          <div className="flex gap-8 ">
+            <input type="button" value="about +" onClick={e => setSubContent([...sub_content, { title: "", content: "" }])} />
+            <input type="button" value="about list +" onClick={e => setSubContent([...sub_content, { title: "", content: [""] }])} />
+          </div>
           <button type="submit">{Object.keys(item).length !== 0 ? "Edit Blog" : "Add Blog"}</button>
         </form>
       </FormContainer>

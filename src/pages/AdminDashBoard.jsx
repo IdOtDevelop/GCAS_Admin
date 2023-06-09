@@ -8,7 +8,7 @@ import Blogs from "../Components/Blogs";
 
 
 function AdminDashBoard() {
-    const [toggle, setToggle] = useState(true);
+    const [toggle, setToggle] = useState(false);
     const [showAddProduct, setshowAddProduct] = useState(false);
     const [showAddBlog, setshowAddBlog] = useState(false);
 
