@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/GCAS_Admin/static/css/main.a6d6d509.css",
-    "main.js": "/GCAS_Admin/static/js/main.d085e252.js",
+    "main.css": "/GCAS_Admin/static/css/main.98aaa0d1.css",
+    "main.js": "/GCAS_Admin/static/js/main.647ecd2e.js",
     "index.html": "/GCAS_Admin/index.html",
-    "main.a6d6d509.css.map": "/GCAS_Admin/static/css/main.a6d6d509.css.map",
-    "main.d085e252.js.map": "/GCAS_Admin/static/js/main.d085e252.js.map"
+    "main.98aaa0d1.css.map": "/GCAS_Admin/static/css/main.98aaa0d1.css.map",
+    "main.647ecd2e.js.map": "/GCAS_Admin/static/js/main.647ecd2e.js.map"
   },
   "entrypoints": [
-    "static/css/main.a6d6d509.css",
-    "static/js/main.d085e252.js"
+    "static/css/main.98aaa0d1.css",
+    "static/js/main.647ecd2e.js"
   ]
 }
