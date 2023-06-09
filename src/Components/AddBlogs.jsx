@@ -9,7 +9,7 @@ import { FaWindowClose } from "react-icons/fa"
 function AddBlogs({ showBlog, item, editState }) {
   // console.log(item)
   const [values, setValues] = useState({});
-  const [sub_content, setSubContent] = useState([{ title: "", content: "" }]);
+  const [sub_content, setSubContent] = useState([{ title: "", content: "",content_img: "" }]);
 
   useEffect(() => {
     setValues({
@@ -139,6 +139,13 @@ function AddBlogs({ showBlog, item, editState }) {
               <div key={i} className="flex flex-col gap-4">
                 <input
                   type="text"
+                  placeholder="About Image"
+                  name="content_img"
+                  defaultValue={a.content_img}
+                  onChange={(e) => handleSubContent(e, i)}
+                />
+                <input
+                  type="text"
                   placeholder="About Title"
                   name="title"
                   defaultValue={a.title}
@@ -178,8 +185,8 @@ function AddBlogs({ showBlog, item, editState }) {
             ))
           }
           <div className="flex gap-8 ">
-            <input type="button" value="about +" onClick={e => setSubContent([...sub_content, { title: "", content: "" }])} />
-            <input type="button" value="about list +" onClick={e => setSubContent([...sub_content, { title: "", content: [""] }])} />
+            <input type="button" value="about +" onClick={e => setSubContent([...sub_content, { title: "", content: "", content_img: "" }])} />
+            <input type="button" value="about list +" onClick={e => setSubContent([...sub_content, { title: "", content: [""], content_img: "" }])} />
           </div>
           <button type="submit">{Object.keys(item).length !== 0 ? "Edit Blog" : "Add Blog"}</button>
         </form>
@@ -190,7 +197,7 @@ function AddBlogs({ showBlog, item, editState }) {
 }
 
 const FormContainer = styled.div`
-  height: 100vh;
+  margin-top: 5rem;
   width: 100vw;
   display: flex;
   flex-direction: column;
