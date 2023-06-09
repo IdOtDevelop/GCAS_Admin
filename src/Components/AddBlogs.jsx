@@ -153,6 +153,7 @@ function AddBlogs({ showBlog, item, editState }) {
                             type="text"
                             placeholder="About List"
                             name="content"
+                            defaultValue={sub_content[i].content[ind]}
                             onChange={(e) => handleSubContent(e, i, ind)}
                           />
                         )
