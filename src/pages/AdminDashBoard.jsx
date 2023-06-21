@@ -11,7 +11,6 @@ function AdminDashBoard() {
     const [toggle, setToggle] = useState(false);
     const [showAddProduct, setshowAddProduct] = useState(false);
     const [showAddBlog, setshowAddBlog] = useState(false);
-
     return (
         <div>
             <div className="mx-16 my-8 flex justify-between m-auto">

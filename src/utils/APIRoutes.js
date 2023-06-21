@@ -13,6 +13,7 @@ export const singleblogRoute = `${host}/admin/blog`;
 export const productsRoute = `${host}/products`;
 export const generalproductRoute = `${host}/product`
 export const productRoute = `${host}/admin/product`;
+export const addTable = `${host}/admin/prodtable`;
 
 // booking
 export const getorderRoute = `${host}/getorder`;

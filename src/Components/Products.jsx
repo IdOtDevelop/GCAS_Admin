@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { productRoute, productsRoute, generalproductRoute } from '../utils/APIRoutes'
-import { FaTrash, FaEdit } from 'react-icons/fa';
+import { FaTrash, FaEdit, FaTable } from 'react-icons/fa';
 import Addproducts from './Addproducts';
 import { ToastContainer, toast } from 'react-toastify';
-
+import AddTable from './AddTable'
 function Products({ setshowAddProduct, showAddProduct }) {
 
     const toastOptions = {
@@ -14,9 +14,10 @@ function Products({ setshowAddProduct, showAddProduct }) {
         draggable: true,
         theme: "dark",
     };
-
+    const [showAddTable, setshowAddTable] = useState(false);
     const [product, setProduct] = useState({});
     const [prod, setProd] = useState([]);
+    const [prodID, setprodID] = useState('');
 
     useEffect(() => {
         axios.get(productsRoute)
@@ -48,6 +49,11 @@ function Products({ setshowAddProduct, showAddProduct }) {
         }
     }
 
+    async function handleEditTable(e, product_code) {
+        setshowAddTable(true);
+        setprodID(product_code);
+    }
+
     return (
         <>
             {
@@ -58,6 +64,7 @@ function Products({ setshowAddProduct, showAddProduct }) {
                         <div key={p._id} className="flex justify-between p-4 mx-16 bg-slate-100">
                             <h1 className="text-2xl">{p.product_name}</h1>
                             <div className="flex justify-center items-center gap-4">
+                                <FaTable size={20} onClick={e => handleEditTable(e, p._id)} />
                                 <FaEdit size={20} onClick={e => handleEdit(e, p._id)} />
                                 <div className="bg-red-500 p-2 rounded">
                                     <FaTrash size={20} color="white" onClick={(e) => handleDelete(e, p.product_code)} />
@@ -74,6 +81,13 @@ function Products({ setshowAddProduct, showAddProduct }) {
                             <Addproducts showProduct={setshowAddProduct} item={product} editState={setProduct} /> :
                             <Addproducts showProduct={setshowAddProduct} />
                     }
+                </div>
+
+            }
+            {
+                showAddTable &&
+                <div className="absolute inset-0">
+                    <AddTable showProduct={setshowAddTable} id={prodID} />
                 </div>
 
             }
