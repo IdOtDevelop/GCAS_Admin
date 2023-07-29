@@ -9,6 +9,12 @@ import { FaWindowClose, FaPlus } from "react-icons/fa"
 function AddTable({ showProduct, id, item }) {
   const [about, setAbout] = useState([{ title: "", content: "" }]);
 
+  useEffect(() => {
+    if (item) {
+      setAbout([...about, { title: "", content: "" }])
+    }
+  }, [item]);
+
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,

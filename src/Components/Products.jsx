@@ -52,6 +52,16 @@ function Products({ setshowAddProduct, showAddProduct }) {
     async function handleEditTable(e, product_code) {
         setshowAddTable(true);
         setprodID(product_code);
+        try {
+            const { data } = await axios.get(generalproductRoute + "/" + product_code);
+            if (typeof data === 'string')
+                toast(data, toastOptions);
+            else
+                setProduct(data)
+        } catch (err) {
+            console.log(err);
+            toast.error("Internal server Error", toastOptions)
+        }
     }
 
     return (
@@ -87,7 +97,15 @@ function Products({ setshowAddProduct, showAddProduct }) {
             {
                 showAddTable &&
                 <div className="absolute inset-0">
-                    <AddTable showProduct={setshowAddTable} id={prodID} />
+                    {
+                        console.log(product)
+                    }
+                    {
+                        product ?
+                            <AddTable showProduct={setshowAddTable} id={prodID} item={product} />
+                            :
+                            <AddTable showProduct={setshowAddTable} id={prodID} />
+                    }
                 </div>
 
             }
