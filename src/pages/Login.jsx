@@ -18,7 +18,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+    if (localStorage.getItem("GCA")) {
       navigate("/");
     }
   }, []);
@@ -29,10 +29,10 @@ export default function Login() {
 
   const validateForm = () => {
     const { email, password } = values;
-    if (email === "") {
+    if (email === "" && email === "admin@greencollar.ai") {
       toast.error("Email and Password is required.", toastOptions);
       return false;
-    } else if (password === "") {
+    } else if (password === "" && password === "gcas@admin") {
       toast.error("Email and Password is required.", toastOptions);
       return false;
     }
@@ -42,18 +42,8 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      const { data } = await axios.post(loginRoute, values);
-      console.log(data);
-      if (!data) {
-        toast.error(data.msg, toastOptions);
-      } else {
-        localStorage.setItem(
-          process.env.REACT_APP_LOCALHOST_KEY,
-          JSON.stringify(data.user)
-        );
-
-        navigate("/");
-      }
+      localStorage.setItem("GCA", "auth");
+      navigate("/");
     }
   };
 
@@ -62,7 +52,7 @@ export default function Login() {
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            <h1>GCAS</h1>
+            <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>GCAS</h1>
           </div>
           <input
             type="email"
@@ -78,9 +68,6 @@ export default function Login() {
             onChange={(e) => handleChange(e)}
           />
           <button type="submit">Log In</button>
-          <span>
-            Don't have an account ? <Link to="/signup">Create One.</Link>
-          </span>
         </form>
       </FormContainer>
       <ToastContainer />
@@ -96,7 +83,7 @@ const FormContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #44475a;
+  background-color: white;
   .brand {
     display: flex;
     align-items: center;
@@ -115,16 +102,16 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    background-color: #282a36;
+    background-color: #eab308;
     border-radius: 2rem;
     padding: 5rem;
   }
   input {
-    background-color: transparent;
+    background-color: white;
     padding: 1rem;
-    border: 0.1rem solid #bd93f9;
+    border: 0.1rem solid white;
     border-radius: 0.4rem;
-    color: white;
+    color: black;
     width: 100%;
     font-size: 1rem;
     &:focus {
@@ -133,7 +120,7 @@ const FormContainer = styled.div`
     }
   }
   button {
-    background-color: #bd93f9;
+    background-color: green;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -143,18 +130,18 @@ const FormContainer = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     &:hover {
-      background-color: #50fa7b;
+      background-color: green;
     }
   }
   span {
     color: white;
     text-transform: uppercase;
     a {
-      color: #bd93f9;
+      color: green;
       text-decoration: none;
       font-weight: bold;
       &:hover {
-        color: #50fa7b;
+        color: yellow;
       }
     }
   }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { redirect, useNavigate } from "react-router-dom"
 import Addproducts from '../Components/Addproducts';
 import axios from "axios";
 import { productsRoute, productRoute } from '../utils/APIRoutes';
@@ -8,6 +8,11 @@ import Blogs from "../Components/Blogs";
 
 
 function AdminDashBoard() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("GCA") !== "auth")
+            navigate('/login');
+    }, [])
     const [toggle, setToggle] = useState(false);
     const [showAddProduct, setshowAddProduct] = useState(false);
     const [showAddBlog, setshowAddBlog] = useState(false);

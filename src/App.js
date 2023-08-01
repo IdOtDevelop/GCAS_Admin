@@ -1,15 +1,15 @@
-import {HashRouter, Routes, Route} from "react-router-dom";
+import {HashRouter, Routes, Route, BrowserRouter} from "react-router-dom";
 import Login from './pages/Login'
 import AdminDashboard from './pages/AdminDashBoard'
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<AdminDashboard />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
